@@ -8,3 +8,8 @@ en:
   error: "error"
   sign_up: "Sign up"
   the_form_contains: "The form contains"
+  update: "Update"
+  delete: "Delete"
+  areyousure: "Are you sure"
+  leave_blank_if_you_don_t_want_to_change_it: "leave blank if you don't want to change it"
+  we_need_your_current_password_to_confirm_your_changes: "We need your current password to confirm your changes"
