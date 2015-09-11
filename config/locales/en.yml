@@ -13,3 +13,8 @@ en:
   areyousure: "Are you sure"
   leave_blank_if_you_don_t_want_to_change_it: "leave blank if you don't want to change it"
   we_need_your_current_password_to_confirm_your_changes: "We need your current password to confirm your changes"
+  categories_page: "Categories page"
+  create_category: "Create category"
+  create_category_complete: "Create category complete"
+  delete_category_complete: "Delete category complete"
+  category_updated: "Category updated"
