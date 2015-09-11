@@ -10,9 +10,15 @@
   <body>
     <%= render "layouts/header" %>
     <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div id="error_explanation" class="field_with_errors">
+            <% flash.each do |message_type, message| %>
+              <div class="alert alert-warning"><%= message %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <%= yield %>
     </div>
   </body>

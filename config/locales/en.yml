@@ -5,3 +5,6 @@ en:
   fts: "Framgia test system"
   welcome: "Webcom To Framgia Test System App!"
   help_page: "This is help page for Framgia test system"
+  error: "error"
+  sign_up: "Sign up"
+  the_form_contains: "The form contains"
