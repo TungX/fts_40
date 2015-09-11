@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150910094258) do
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.time     "time_limit"
+    t.integer  "time_limit"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
