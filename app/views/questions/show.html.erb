@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <%= @question.content %>
+          </td>
+          <td>
+            <p class="label label-<%= @question.waiting? ? 'warning' :
+            'success' %>">
+              <%= @question.state %>
+            </p>
+          </td>
+        </tr>
+        <% if @question.options.any? %>
+          <% @question.options.each do |option| %>
+            <tr>
+              <td>
+                <p id="option">
+                  <%= option.content %>
+                </p>
+              </td>
+              <td>
+                <% if option.correct? %>
+                  <p class="label label-success">
+                    <%= t "correct" %>
+                  </p>
+                <% else %>
+                  <p class="label label-danger">
+                    <%= t "not_correct" %>
+                  </p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="col-md-12">
+      <%= link_to user_question_path(current_user, @question),
+          method: :delete, data: {confirm: t("areyousure")} do %>
+        <span class="btn btn-danger col-md-5 pull-left">
+          <%= t "delete" %>
+        </span>
+      <% end %>
+      <%= link_to edit_user_question_path(current_user, @question) do %>
+        <span class="btn btn-warning col-md-5 pull-right">
+          <%= t "edit" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
