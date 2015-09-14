@@ -38,16 +38,18 @@
       </tbody>
     </table>
     <div class="col-md-12">
-      <%= link_to user_question_path(current_user, @question),
+      <%= link_to admin_question_path(@question),
           method: :delete, data: {confirm: t("areyousure")} do %>
         <span class="btn btn-danger col-md-5 pull-left">
           <%= t "delete" %>
         </span>
       <% end %>
-      <%= link_to edit_user_question_path(current_user, @question) do %>
-        <span class="btn btn-warning col-md-5 pull-right">
-          <%= t "edit" %>
-        </span>
+      <% if @question.waiting? %>
+        <%= form_for [:admin, @question] do |f|%>
+          <%= f.hidden_field :state, value: :actived %>
+          <%= f.submit t("active"),
+            class: "btn btn-success col-md-5 pull-right" %>
+        <% end %>
       <% end %>
     </div>
   </div>

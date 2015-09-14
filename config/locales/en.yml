@@ -17,7 +17,6 @@ en:
   create_category: "Create category"
   create_category_complete: "Create category complete"
   delete_category_complete: "Delete category complete"
-  category_updated: "Category updated"
   suggested_question: "Suggested question"
   new_question: "New question"
   create_question: "Create question"
@@ -30,3 +29,4 @@ en:
   update_question_fail: "Update question fail"
   destroy_question_complete: "Destroy question complete"
   destroy_question_fail: "Destroy question fail"
+  active: "Active"

@@ -12,15 +12,21 @@
     </p>
   </td>
   <td id="vertical">
-    <%= link_to user_question_path(current_user, question) do %>
+    <%= link_to admin_question_path(question) do %>
       <span class="glyphicon glyphicon-eye-open"></span>
     <% end %>
-    <%= link_to edit_user_question_path(current_user, question) do %>
-      <span class="glyphicon glyphicon-edit"></span>
-    <% end %>
-    <%= link_to user_question_path(current_user, question),
+    <%= link_to admin_question_path(question),
         method: :delete, data: {confirm: t("areyousure")} do %>
       <span class="glyphicon glyphicon-trash"></span>
     <% end %>
   </td>
+  <td>
+    <% if question.waiting? %>
+      <%= form_for [:admin, question] do |f|%>
+        <%= f.hidden_field :state, value: :actived %>
+        <%= f.submit t("active"),
+          class: "btn btn-success" %>
+      <% end %>
+    <% end %>
+</td>
 </tr>
