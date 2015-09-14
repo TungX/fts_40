@@ -16,7 +16,7 @@
           </thead>
         </tr>
         <% if @categories.any? %>
-          <%=  render @categories%>
+          <%= render @categories %>
           <%= paginate @categories %>
         <% end %>
       </table>

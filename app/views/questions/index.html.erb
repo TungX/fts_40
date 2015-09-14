@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>
+      <b class="pull-left"><%= t "suggested_question" %></b>
+      <%= link_to new_user_question_path(current_user),
+        class: "pull-right link-text-question" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        <%= t "new_question" %>
+      <% end %>
+    </h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="content">Question</th>
+          <th class="subject">Subject</th>
+          <th class="state">State</th>
+          <th class="action"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @questions.any? %>
+          <%= render @questions%>
+          <%= paginate @questions %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<tr>
+  <td id="vertical">
+    <%= question.content %>
+  </td>
+  <td id="vertical">
+    <%= question.category.name %>
+  </td>
+  <td id="vertical">
+    <%= question.state %>
+  </td>
+  <td id="vertical">
+    <%= link_to user_question_path(current_user, question) do %>
+      <span class="glyphicon glyphicon-eye-open"></span>
+    <% end %>
+    <%= link_to edit_user_question_path(current_user, question) do %>
+      <span class="glyphicon glyphicon-edit"></span>
+    <% end %>
+    <%= link_to user_question_path(current_user, question),
+        method: :delete, data: {confirm: t("areyousure")} do %>
+      <span class="glyphicon glyphicon-trash"></span>
+    <% end %>
+  </td>
+</tr>
