@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 20150910094258) do
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "time_limit"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "time_limit",      default: 0
+    t.integer  "number_question", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "exams", force: :cascade do |t|
@@ -46,11 +47,11 @@ ActiveRecord::Schema.define(version: 20150910094258) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "content"
-    t.integer  "state"
+    t.integer  "state",       default: 0
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"
@@ -70,15 +71,16 @@ ActiveRecord::Schema.define(version: 20150910094258) do
   add_index "results", ["question_id"], name: "index_results_on_question_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.string   "chat_word",              null: false
-    t.string   "email",                  null: false
-    t.string   "encrypted_password",     null: false
+    t.string   "name",                               null: false
+    t.string   "chat_word",                          null: false
+    t.string   "email",                              null: false
+    t.string   "encrypted_password",                 null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "role",                   default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

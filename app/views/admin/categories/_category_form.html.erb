@@ -19,8 +19,12 @@
             <%= f.label :time_limit %> (<%= t "minutes" %>)
             <%= f.number_field :time_limit, class: "form-control" %>
           </div>
-          <%= f.submit t("create_category"),
-            class: "btn btn-primary col-md-12" %>
+          <div class="form-group">
+            <%= f.label :number_question %>
+            <%= f.number_field :number_question, class: "form-control" %>
+          </div>
+          <%= f.submit @category.id.nil? ? t("create_category") :
+              t("update_category"), class: "btn btn-primary col-md-12" %>
         <% end %>
       </div>
     </div>

@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
   def index
     @questions = current_user.questions.order("created_at DESC").page params[:page]
   end
@@ -11,7 +12,6 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new question_params
     if @question.save
       flash[:success] = t "create_question_complete"
       redirect_to user_questions_path current_user
@@ -52,11 +52,7 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit :content, :category_id, :user_id, :state,
+    params.require(:question).permit :content, :category_id, :user_id,
       options_attributes: [:id, :content, :_destroy, :correct]
-  end
-
-  def load_question
-    @question = Question.find_by params[:id]
   end
 end

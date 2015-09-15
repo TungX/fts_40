@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :reset_password_token
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
+      t.integer :role, default: 0
 
       t.timestamps null: false
     end
