@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :load_category, only: [:edit, :destroy, :update]
+  load_and_authorize_resource
 
   def index
     @categories = Category.order(:name).page params[:page]
@@ -7,7 +7,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new category_params
     if @category.save
       flash[:success] = t "create_category_complete"
       redirect_to admin_categories_path
@@ -35,11 +34,8 @@ class Admin::CategoriesController < ApplicationController
     redirect_to admin_categories_path
   end
 
+  private
   def category_params
-    params.require(:category).permit :name, :description, :time_limit
-  end
-
-  def load_category
-    @category = Category.find_by id: params[:id]
+    params.require(:category).permit :name, :description, :time_limit, :number_question
   end
 end

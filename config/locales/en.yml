@@ -15,6 +15,7 @@ en:
   we_need_your_current_password_to_confirm_your_changes: "We need your current password to confirm your changes"
   categories_page: "Categories page"
   create_category: "Create category"
+  update_category: "Update category"
   create_category_complete: "Create category complete"
   delete_category_complete: "Delete category complete"
   suggested_question: "Suggested question"

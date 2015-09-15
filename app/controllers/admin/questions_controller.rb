@@ -1,5 +1,6 @@
 class Admin::QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :update, :destroy]
+  load_and_authorize_resource
+
   def index
     @questions = Question.order(:state).order("updated_at DESC").page params[:page]
   end
@@ -22,10 +23,6 @@ class Admin::QuestionsController < ApplicationController
   end
 
   private
-  def load_question
-    @question = Question.find_by id: params[:id]
-  end
-
   def question_params
     params.require(:question).permit :state
   end
