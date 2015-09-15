@@ -1,0 +1,22 @@
+<div class="row">
+  <p id="time-down" data-time-limit="<%= @time_limit %>"
+    data-time-start="<%=@time_start%>"
+    data-time-now="<%=Time.now().to_i%>"></p>
+    <div class="col-md-12">
+    <%= form_for @exam do |f| %>
+      <%= f.fields_for :results do |result| %>
+        <table class="table table-striped">
+          <tbody>
+            <%= render "question", f: result %>
+          </tbody>
+        </table>
+      <% end %>
+      <% if @exam.testing? %>
+        <%= f.submit t("submit"),
+          class: "btn btn-primary col-md-3 pull-left" %>
+        <%= f.submit t("finish"),
+          class: "btn btn-primary col-md-3 pull-right", id: "finish" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

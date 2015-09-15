@@ -1,0 +1,49 @@
+class ExamsController < ApplicationController
+  load_and_authorize_resource
+
+  def index
+    @exam = current_user.exams.new
+    @exams = current_user.exams.order("created_at DESC").page params[:page]
+    @categories = Category.all
+  end
+
+  def create
+    @exam = current_user.exams.new exam_params
+    if @exam.save
+      flash[:success] = t "create_exam_complete"
+    else
+      flash[:danger] = t "you_need_complete_exam"
+    end
+    redirect_to exams_path
+  end
+
+  def show
+    @time_limit = @exam.category.time_limit
+    unless @exam.time_start
+      @time_start = Time.now().to_i
+      @exam.update_attributes time_start: @time_start, state: :testing
+    else
+      @time_start = @exam.time_start
+    end
+  end
+
+  def update
+    @exam.state = :unchecked if params[:commit] == Settings.commit_finish
+    @exam.time_end = Time.now().to_i
+    if @exam.update_attributes update_params
+      flash[:success] = t "update_exam_complete"
+    else
+      flash[:danger] = t "update_exam_fail"
+    end
+    redirect_to exams_path
+  end
+
+  private
+  def exam_params
+    params.require(:exam).permit :category_id
+  end
+
+  def update_params
+    params.require(:exam).permit results_attributes: [:id, :option_id]
+  end
+end

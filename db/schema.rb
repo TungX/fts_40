@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 20150910094258) do
   end
 
   create_table "exams", force: :cascade do |t|
-    t.time     "time_start"
-    t.time     "time_end"
-    t.integer  "state"
+    t.integer  "time_start"
+    t.integer  "time_end"
+    t.integer  "state",       default: 0
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "exams", ["category_id"], name: "index_exams_on_category_id"
@@ -59,14 +59,14 @@ ActiveRecord::Schema.define(version: 20150910094258) do
 
   create_table "results", force: :cascade do |t|
     t.boolean  "correct"
-    t.integer  "examp_id"
+    t.integer  "exam_id"
     t.integer  "question_id"
     t.integer  "option_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "results", ["examp_id"], name: "index_results_on_examp_id"
+  add_index "results", ["exam_id"], name: "index_results_on_exam_id"
   add_index "results", ["option_id"], name: "index_results_on_option_id"
   add_index "results", ["question_id"], name: "index_results_on_question_id"
 
