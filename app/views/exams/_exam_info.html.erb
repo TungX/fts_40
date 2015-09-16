@@ -1,0 +1,24 @@
+<td class="content">
+  <%= exam.created_at %>
+</td>
+<td class="subject">
+  <%= exam.category.name %>
+</td>
+<td class="state">
+  <%= exam.state %>
+</td>
+<td class="state">
+  <%= exam.category.time_limit %>
+</td>
+<td class="state">
+  <%= exam.results.count %>
+</td>
+<td class="time">
+  <%= exam.time_end.nil? ? Settings.time_default :
+    Time.at((exam.time_end - exam.time_start) < exam.category.time_limit * 60 ? (exam.time_end - exam.time_start) : exam.category.time_limit * 60)
+      .utc.strftime("%H:%M:%S") %>
+</td>
+<td class="scope">
+  <%= exam.checked? ? "#{exam.results.corrects.count}/#{exam.results.count}" :
+    "-" %>
+</td>

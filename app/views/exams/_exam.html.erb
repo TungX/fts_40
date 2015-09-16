@@ -1,24 +1,5 @@
 <tr>
-  <td>
-    <%= exam.created_at %>
-  </td>
-  <td>
-    <%= exam.category.name %>
-  </td>
-  <td>
-    <%= exam.state %>
-  </td>
-  <td>
-    <%= exam.category.time_limit %>
-  </td>
-  <td>
-    <%= exam.results.count %>
-  </td>
-  <td>
-    <%= exam.time_end.nil? ? Settings.time_default :
-      Time.at((exam.time_end - exam.time_start) < exam.category.time_limit * 60 ? (exam.time_end - exam.time_start) : exam.category.time_limit * 60)
-        .utc.strftime("%H:%M:%S") %>
-  </td>
+  <%= render "exam_info", exam: exam %>
   <td>
     <%= link_to exam.start? ? t("start") : t("view"), exam %>
   </td>
