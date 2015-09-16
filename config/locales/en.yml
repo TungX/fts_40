@@ -37,3 +37,6 @@ en:
   update_exam_complete: "Update exam complete"
   create_exam_complete: "Create exam complete"
   you_need_complete_exam: "You nead complete exam"
+  question_actived: "Question actived"
+  questions_of: "Questions of"
+  empty: "empty"

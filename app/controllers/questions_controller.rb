@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   load_and_authorize_resource
+  before_action :check_question, only: [:edit, :update, :destroy]
 
   def index
     @questions = current_user.questions.order("created_at DESC").page params[:page]
@@ -16,7 +17,6 @@ class QuestionsController < ApplicationController
       flash[:success] = t "create_question_complete"
       redirect_to user_questions_path current_user
     else
-      flash[:danger] = t "create_question_fail"
       @categories = Category.all
       render :new
     end
@@ -35,7 +35,6 @@ class QuestionsController < ApplicationController
       flash[:success] = t "update_question_complete"
       redirect_to user_question_path current_user, @question
     else
-      flash[:danger] = t "update_question_fail"
       @categories = Category.all
       render :edit
     end
@@ -54,5 +53,10 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit :content, :category_id, :user_id,
       options_attributes: [:id, :content, :_destroy, :correct]
+  end
+
+  def check_question
+    flash[:warning] = t "question_actived"
+    redirect_to user_questions_path current_user if @question.actived?
   end
 end

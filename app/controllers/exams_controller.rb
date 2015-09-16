@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
   load_and_authorize_resource
+  before_action :check_category, only: [:create]
 
   def index
     @exam = current_user.exams.new
@@ -45,5 +46,13 @@ class ExamsController < ApplicationController
 
   def update_params
     params.require(:exam).permit results_attributes: [:id, :option_id]
+  end
+
+  def check_category
+    category = Category.find params[:exam][:category_id]
+    if category.questions.count < 1
+      flash[:danger] = "#{t "questions_of"} #{category.name} #{t "empty"}"
+      redirect_to exams_path
+    end
   end
 end
