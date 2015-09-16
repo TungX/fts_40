@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     root "categories#index"
     resources :categories
     resources :questions
+    resources :exams
   end
   resources :users do
     resources :questions

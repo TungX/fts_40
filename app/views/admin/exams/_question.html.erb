@@ -8,7 +8,7 @@
         <li class="col-md-12" id="vertical">
           <label class="radio">
             <%= f.radio_button :option_id, option.id,
-              disabled: !f.object.exam.testing? %>
+              disabled: true %>
             <%= option.content %>
           </label>
         </li>
@@ -16,15 +16,13 @@
     <% end %>
   </td>
 </tr>
-<% if f.object.exam.checked? %>
-  <tr>
-    <td colspan="2">
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :correct, disabled: true %>
-          <%= f.label :answer_correct %>
-        </label>
-      </div>
-    </td>
-  </tr>
-<% end %>
+<tr>
+  <td colspan="2">
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :correct %>
+        <%= f.label :answer_correct %>
+      </label>
+    </div>
+  </td>
+</tr>

@@ -1,4 +1,6 @@
 class Exam < ActiveRecord::Base
+  max_paginates_per 50
+
   belongs_to :user
   belongs_to :category
   has_many :results, dependent: :destroy
@@ -6,7 +8,9 @@ class Exam < ActiveRecord::Base
 
   enum state: [:start, :testing, :unchecked, :checked]
 
-  scope :start_or_testing, ->user_id{where(state: [0, 1], user_id: user_id)}
+  scope :start_or_testing, ->user_id{where(state: [states[:start], states[:testing]],
+    user_id: user_id)}
+  scope :to_check, ->{where(state: [states[:unchecked], states[:checked]])}
 
   before_create :create_questions
 

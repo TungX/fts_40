@@ -1,0 +1,6 @@
+<tr>
+  <%= render "exams/exam_info", exam: exam %>
+  <td>
+    <%= link_to exam.start? ? t("start") : t("view"), admin_exam_path(exam) %>
+  </td>
+</tr>
