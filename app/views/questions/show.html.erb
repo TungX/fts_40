@@ -37,18 +37,20 @@
         <% end %>
       </tbody>
     </table>
-    <div class="col-md-12">
-      <%= link_to user_question_path(current_user, @question),
-          method: :delete, data: {confirm: t("areyousure")} do %>
-        <span class="btn btn-danger col-md-5 pull-left">
-          <%= t "delete" %>
-        </span>
-      <% end %>
-      <%= link_to edit_user_question_path(current_user, @question) do %>
-        <span class="btn btn-warning col-md-5 pull-right">
-          <%= t "edit" %>
-        </span>
-      <% end %>
-    </div>
+    <% if @question.waiting? %>
+      <div class="col-md-12">
+        <%= link_to user_question_path(current_user, @question),
+            method: :delete, data: {confirm: t("areyousure")} do %>
+          <span class="btn btn-danger col-md-5 pull-left">
+            <%= t "delete" %>
+          </span>
+        <% end %>
+        <%= link_to edit_user_question_path(current_user, @question) do %>
+          <span class="btn btn-warning col-md-5 pull-right">
+            <%= t "edit" %>
+          </span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
