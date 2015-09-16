@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= render "form_exam" %>
+  </div>
+  <div class="col-md-12">
+    <%=  t "examination_list" %>
+  </div>
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="content"><%= t "create_date" %></th>
+          <th class="subject"><%= t "subject" %></th>
+          <th class="state"><%= t "status" %></th>
+          <th class="state"><%= t "duration" %></th>
+          <th class="state"><%= t "question_number" %></th>
+          <th class="state"><%= t "spent_time" %></th>
+          <th class="action"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @exams if @exams.any? %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>

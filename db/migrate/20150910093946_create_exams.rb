@@ -1,9 +1,9 @@
 class CreateExams < ActiveRecord::Migration
   def change
     create_table :exams do |t|
-      t.time :time_start
-      t.time :time_end
-      t.integer :state
+      t.integer :time_start
+      t.integer :time_end
+      t.integer :state, default: 0
       t.references :user, index: true, foreign_key: true
       t.references :category, index: true, foreign_key: true
 
