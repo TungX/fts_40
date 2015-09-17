@@ -1,0 +1,8 @@
+<p><strong><%= f.object.question.content %></strong></p>
+<% f.object.question.options.each do |option| %>
+  <label class="radio">
+    <%= f.radio_button :option_id, option.id,
+      disabled: @disabled %>
+    <%= option.content %>
+  </label>
+<% end %>

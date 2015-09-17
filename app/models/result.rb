@@ -4,4 +4,5 @@ class Result < ActiveRecord::Base
   belongs_to :option
 
   scope :corrects,->{where correct: true}
+  default_scope -> {order(:id)}
 end

@@ -1,32 +1,45 @@
 <tr>
-  <td id="vertical">
+  <% index = question_counter + 1 %>
+  <td id="vertical" class="id">
+    <%= index %>
+  </td>
+  <td id="vertical" class="user">
+    <%= question.user.name %>
+  </td>
+  <td id="vertical" class="content">
     <%= question.content %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="subject">
     <%= question.category.name %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="state">
     <p class="label label-<%= question.waiting? ? "warning" :
       "success" %>">
-      <%= question.state %>
+      <%= t "#{question.state}" %>
     </p>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="action">
     <%= link_to admin_question_path(question) do %>
-      <span class="glyphicon glyphicon-eye-open"></span>
+      <span class="glyphicon glyphicon-eye-open"
+        data-toggle="tooltip" data-placement="bottom"
+        title="<%= t "show" %>"></span>
     <% end %>
     <%= link_to admin_question_path(question),
         method: :delete, data: {confirm: t("areyousure")} do %>
-      <span class="glyphicon glyphicon-trash"></span>
+      <span class="glyphicon glyphicon-trash"
+        data-toggle="tooltip" data-placement="bottom"
+        title="<%= t "delete" %>"></span>
     <% end %>
   </td>
-  <td>
-    <% if question.waiting? %>
-      <%= form_for [:admin, question] do |f|%>
-        <%= f.hidden_field :state, value: :actived %>
-        <%= f.submit t("active"),
-          class: "btn btn-success" %>
+  <td id="vertical" class="action-active">
+    <p>
+      <% if question.waiting? %>
+        <%= form_for [:admin, question] do |f|%>
+          <%= f.hidden_field :state, value: :actived %>
+          <%= f.submit t("active"),
+            class: "btn btn-success" %>
+        <% end %>
       <% end %>
-    <% end %>
-</td>
+    </p>
+  </td>
 </tr>

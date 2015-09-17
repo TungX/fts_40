@@ -1,16 +1,25 @@
 <div class="row">
-  <p id="time-down" data-time-limit="<%= @time_limit %>"
-    data-time-start="<%=@time_start%>"
-    data-time-now="<%=Time.now().to_i%>"></p>
-    <div class="col-md-12">
+  <% if @exam.testing? %>
+    <div id="time-down" data-time-limit="<%= @time_limit %>"
+      data-time-start="<%=@time_start%>"
+      data-time-now="<%=Time.now().to_i%>" class="btn"></div>
+  <% end %>
+  <div class="col-md-12">
+    <div class="title">
+      <%= t "exam_date" %>:
+      <%= (@exam.created_at).strftime("%d/%m/%y %H:%M %P") %>
+      <br>
+      <h3 class="center">
+        <strong><%= @exam.category.name %></strong>
+      </h3>
+    </div>
+    <hr>
     <%= form_for @exam do |f| %>
-      <%= f.fields_for :results do |result| %>
-        <table class="table table-striped">
-          <tbody>
-            <%= render "question", f: result %>
-          </tbody>
-        </table>
-      <% end %>
+      <ol>
+        <%= f.fields_for :results do |result| %>
+          <%= render "question", f: result %>
+        <% end %>
+      </ol>
       <% if @exam.testing? %>
         <%= f.submit t("submit"),
           class: "btn btn-primary col-md-3 pull-left" %>

@@ -9,9 +9,10 @@
         <%= render "question_form", f: f %>
         <%= link_to t("delete_question"),
           user_question_path(current_user, @question),
-          method: :delete, data: {confirm: t("areyousure")} %>
+          method: :delete, data: {confirm: t("areyousure")},
+          class: "btn btn-danger pull-left col-md-4" %>
         <%= f.submit t("update_question"),
-          class: "btn btn-primary col-md-12" %>
+          class: "btn btn-primary pull-right col-md-4" %>
         <% end %>
       </div>
     </div>

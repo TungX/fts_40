@@ -1,13 +1,14 @@
 <div class="fields">
   <div class="col-md-12">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <%= f.label :option %>
       <%= link_to_remove_fields "remove", f %>
       <%= f.text_field :content, class: "form-control" %>
     </div>
-    <div class="col-md-4">
-      <%= f.label :correct %>
-      <%= f.check_box :correct %>
+    <div class="col-md-2">
+      <p class="center"><%= f.label :correct %></p>
+      <p class="center"><%= f.check_box :correct,
+        class: "checkbox-options" %></p>
     </div>
   </div>
 </div>

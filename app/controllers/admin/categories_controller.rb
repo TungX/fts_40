@@ -11,6 +11,7 @@ class Admin::CategoriesController < ApplicationController
       flash[:success] = t "create_category_complete"
       redirect_to admin_categories_path
     else
+      @categories = Category.order(:name).page params[:page]
       render :index
     end
   end
@@ -30,6 +31,8 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     if @category.destroy
       flash[:success] = t "delete_category_complete"
+    else
+      flash[:danger] = t "delete_category_fail"
     end
     redirect_to admin_categories_path
   end

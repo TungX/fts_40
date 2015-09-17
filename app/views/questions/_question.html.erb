@@ -1,28 +1,41 @@
 <tr>
-  <td id="vertical">
+  <td id="vertical" class="id">
+  <%= index = question_counter + 1 %>
+  </td>
+  <td id="vertical" class="content">
     <%= question.content %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="name">
     <%= question.category.name %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="state">
     <p class="label label-<%= question.waiting? ? "warning" :
       "success" %>">
-      <%= question.state %>
+      <%= t "#{question.state}" %>
     </p>
   </td>
-  <td id="vertical">
-    <%= link_to user_question_path(current_user, question) do %>
-      <span class="glyphicon glyphicon-eye-open"></span>
-    <% end %>
-    <% if question.waiting? %>
-      <%= link_to edit_user_question_path(current_user, question) do %>
-        <span class="glyphicon glyphicon-edit"></span>
+  <td id="vertical" class="action">
+    <p>
+      <%= link_to user_question_path(current_user, question) do %>
+        <span class="glyphicon glyphicon-eye-open"
+          data-toggle="tooltip" data-placement="bottom"
+          title="<%= t "show" %>"></span>
       <% end %>
-      <%= link_to user_question_path(current_user, question),
-          method: :delete, data: {confirm: t("areyousure")} do %>
-        <span class="glyphicon glyphicon-trash"></span>
+      <% if question.waiting? %>
+        <%= link_to edit_user_question_path(current_user, question) do %>
+          <span class="glyphicon glyphicon-edit"
+            data-toggle="tooltip" data-placement="bottom"
+            title="<%= t "edit" %>"></span>
+        <% end %>
+        <%= link_to user_question_path(current_user, question),
+            method: :delete, data: {confirm: t("areyousure")} do %>
+          <span class="glyphicon glyphicon-trash"
+            data-toggle="tooltip" data-placement="bottom"
+            title="<%= t "delete" %>"></span>
+        <% end %>
       <% end %>
-    <% end %>
+    </p>
+  </td>
+  <td class="action-active">
   </td>
 </tr>

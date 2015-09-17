@@ -1,10 +1,11 @@
 class ExamsController < ApplicationController
   load_and_authorize_resource
+
   before_action :check_category, only: [:create]
 
   def index
     @exam = current_user.exams.new
-    @exams = current_user.exams.order("created_at DESC").page params[:page]
+    @exams = current_user.exams.order("updated_at DESC").page params[:page]
     @categories = Category.all
   end
 
@@ -20,12 +21,13 @@ class ExamsController < ApplicationController
 
   def show
     @time_limit = @exam.category.time_limit
-    unless @exam.time_start
+    if @exam.time_start
+      @time_start = @exam.time_start
+    else
       @time_start = Time.now().to_i
       @exam.update_attributes time_start: @time_start, state: :testing
-    else
-      @time_start = @exam.time_start
     end
+    @disabled = !@exam.testing?
   end
 
   def update

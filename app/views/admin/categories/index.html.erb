@@ -1,24 +1,26 @@
 <h1><%= t "categories_page" %></h1>
 <div class="row">
   <div class="col-md-12">
-    <div class="col-md-5">
+    <div class="col-md-4">
       <%= render "category_form" %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8 category">
       <table class="table table-striped">
         <tr>
           <thead>
-            <th><%= t "id" %></th>
-            <th><%= t "name" %></th>
-            <th><%= t "description" %></th>
-            <th><%= t "time_limit" %></th>
-            <th><%= t "action" %></th>
+            <th class="id"><%= t "stt" %></th>
+            <th class="name center"><%= t "name" %></th>
+            <th class="description center"><%= t "description" %></th>
+            <th class="time_limit"><%= t "time_limit" %></th>
+            <th class="action"><%= t "action" %></th>
           </thead>
         </tr>
-        <% if @categories.any? %>
-          <%= render @categories %>
-          <%= paginate @categories %>
-        <% end %>
+        <%= render @categories if @categories.any? %>
+        <tr>
+          <td colspan="5">
+            <%= paginate @categories %>
+          </td>
+        </tr>
       </table>
     </div>
   </div>

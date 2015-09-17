@@ -8,5 +8,6 @@ class CreateResults < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :results, :id
   end
 end

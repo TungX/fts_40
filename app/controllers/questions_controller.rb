@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   load_and_authorize_resource
+
   before_action :check_question, only: [:edit, :update, :destroy]
+  before_action :load_categories, only: [:new, :create, :edit, :update]
+  before_action :check_category, only: [:create]
 
   def index
     @questions = current_user.questions.order("created_at DESC").page params[:page]
@@ -9,7 +12,6 @@ class QuestionsController < ApplicationController
   def new
      @question = Question.new
      @question.options.build
-     @categories = Category.all
   end
 
   def create
@@ -17,7 +19,6 @@ class QuestionsController < ApplicationController
       flash[:success] = t "create_question_complete"
       redirect_to user_questions_path current_user
     else
-      @categories = Category.all
       render :new
     end
   end
@@ -26,16 +27,13 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all
   end
 
   def update
-    @categories = Category.all
     if @question && @question.update_attributes(question_params)
       flash[:success] = t "update_question_complete"
       redirect_to user_question_path current_user, @question
     else
-      @categories = Category.all
       render :edit
     end
   end
@@ -56,7 +54,21 @@ class QuestionsController < ApplicationController
   end
 
   def check_question
-    flash[:warning] = t "question_actived"
-    redirect_to user_questions_path current_user if @question.actived?
+    if @question.actived?
+      flash[:warning] = t "question_actived"
+      redirect_to user_questions_path current_user
+    end
+  end
+
+  def load_categories
+    @categories = Category.all
+  end
+
+  def check_category
+    category = Category.find_by id: params[:question][:category_id]
+    if category.nil?
+      flash[:danger] = t "categories_empty"
+      redirect_to user_questions_path current_user
+    end
   end
 end

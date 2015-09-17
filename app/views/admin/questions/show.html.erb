@@ -9,7 +9,7 @@
           <td>
             <p class="label label-<%= @question.waiting? ? "warning" :
             "success" %>">
-              <%= @question.state %>
+              <%= t "#{@question.state}" %>
             </p>
           </td>
         </tr>

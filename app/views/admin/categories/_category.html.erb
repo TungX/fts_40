@@ -1,17 +1,18 @@
+<% index = category_counter + 1 %>
 <tr>
-  <td id="vertical">
-    <%= category.id %>
+  <td id="vertical" class="id">
+    <%= index %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="name">
     <%= category.name %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="description">
     <%= category.description %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="time_limit">
     <%= category.time_limit %>
   </td>
-  <td id="vertical">
+  <td id="vertical" class="action">
     <%= link_to t("edit"), edit_admin_category_path(category),
       class: "btn btn-xs btn-info" %>
     <%= link_to t("delete"), admin_category_path(category),
