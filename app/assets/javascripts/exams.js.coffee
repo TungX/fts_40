@@ -4,7 +4,9 @@ $(document).on "ready page:load", ->
   time_start = time_element.getAttribute("data-time-start")
   time_now = time_element.getAttribute("data-time-now")
   time = time_limit * 60 - (time_now - time_start)
+
   setInterval (->
+    time_element.style.border= "2px solid red";
     if (time > 0)
       c = time--
       h = c / 3600 >> 0

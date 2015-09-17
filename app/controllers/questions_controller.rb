@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   before_action :check_question, only: [:edit, :update, :destroy]
   before_action :load_categories, only: [:new, :create, :edit, :update]
+  before_action :check_category, only: [:create]
 
   def index
     @questions = current_user.questions.order("created_at DESC").page params[:page]
@@ -61,5 +62,13 @@ class QuestionsController < ApplicationController
 
   def load_categories
     @categories = Category.all
+  end
+
+  def check_category
+    category = Category.find_by id: params[:question][:category_id]
+    if @question.destroy
+      flash[:danger] = t "categories_empty"
+      redirect_to user_questions_path current_user
+    end
   end
 end
