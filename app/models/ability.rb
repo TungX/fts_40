@@ -8,6 +8,7 @@ class Ability
     else
       cannot :read, :all
       can :manage, Question, user_id: user.id
+      can :manage, User, id: user.id
       can [:create, :show, :index], Exam, user_id: user.id
     end
   end

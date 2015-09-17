@@ -18,10 +18,8 @@
         </tr>
       </thead>
       <tbody>
-        <% if @questions.any? %>
-          <%= render @questions%>
-          <%= paginate @questions %>
-        <% end %>
+        <%= render @questions if @questions.any? %>
+        <%= paginate @questions %>
       </tbody>
     </table>
   </div>

@@ -18,6 +18,7 @@
       </thead>
       <tbody>
         <%= render @exams if @exams.any? %>
+        <%= paginate @categories %>
       </tbody>
     </table>
   </div>

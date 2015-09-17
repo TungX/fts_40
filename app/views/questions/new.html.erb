@@ -6,9 +6,9 @@
       </div>
       <div class="panel-body">
         <%= form_for [current_user, @question] do |f| %>
-        <%= render "question_form", f: f %>
-        <%= f.submit t("create_question"),
-          class: "btn btn-primary col-md-12" %>
+          <%= render "question_form", f: f %>
+          <%= f.submit t("create_question"),
+            class: "btn btn-primary col-md-12" %>
         <% end %>
       </div>
     </div>

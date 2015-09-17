@@ -1,21 +1,4 @@
-<tr>
-  <td id="vertical" class="col-md-4">
-    <p><strong><%= f.object.question.content %></strong></p>
-  </td>
-  <td id="vertical" class="col-md-8">
-    <% f.object.question.options.each do |option| %>
-      <ul class="answers">
-        <li class="col-md-12" id="vertical">
-          <label class="radio">
-            <%= f.radio_button :option_id, option.id,
-              disabled: true %>
-            <%= option.content %>
-          </label>
-        </li>
-      </ul>
-    <% end %>
-  </td>
-</tr>
+<%= render "exams/question_info", f: f %>
 <tr>
   <td colspan="2">
     <div class="checkbox">

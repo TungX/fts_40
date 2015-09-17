@@ -6,11 +6,11 @@ class Admin::ExamsController < ApplicationController
   end
 
   def show
+    @disabled = true
   end
 
   def update
-    @exam.state = Exam.states[:checked]
-    if @exam.update_attributes exam_params
+    if @exam && @exam.update_attributes(exam_params)
       flash[:success] = t "update_exam_complete"
     else
       flash[:danger] = t "update_exam_fail"
@@ -19,6 +19,6 @@ class Admin::ExamsController < ApplicationController
   end
 
   def exam_params
-    params.require(:exam).permit results_attributes: [:id, :correct]
+    params.require(:exam).permit :state, results_attributes: [:id, :correct]
   end
 end

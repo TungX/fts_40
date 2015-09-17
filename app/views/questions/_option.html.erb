@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <li>
+    <%= option.content %>
+    <% if option.correct? %>
+      <p class="label label-success pull-right">
+        <%= t "correct" %>
+      </p>
+    <% else %>
+      <p class="label label-danger pull-right">
+        <%= t "not_correct" %>
+      </p>
+    <% end %>
+  </li>
+</div>

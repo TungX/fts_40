@@ -15,10 +15,8 @@
             <th><%= t "action" %></th>
           </thead>
         </tr>
-        <% if @categories.any? %>
-          <%= render @categories %>
-          <%= paginate @categories %>
-        <% end %>
+        <%= render @categories if @categories.any? %>
+        <%= paginate @categories %>
       </table>
     </div>
   </div>
